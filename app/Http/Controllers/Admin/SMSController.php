@@ -12,7 +12,7 @@ class SMSController extends Controller
 
     public function index(Request $request){
         //获取手机号码
-        $mobile_number=Input::get("moble_number");
+        $mobile_number=Input::get("moblie_number");
         //判断手机号码格式
         if(Controller::isMobile($mobile_number)){
            //判断用户是否已注册
@@ -21,6 +21,7 @@ class SMSController extends Controller
                 return  json_encode(["msg"=>"用户已注册，请登陆","sta"=>"1","data"=>""]);
             }else{
                 //判断有效时间
+
                 //获取验证码
                 $randStr = str_shuffle('1234567890');
                 $rand = substr($randStr,0,4);//4位参数

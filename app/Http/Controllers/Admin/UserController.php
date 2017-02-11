@@ -24,6 +24,7 @@ class UserController extends Controller
     public function post_login(Request $request){
         $username=Input::get('username');
         $password=Input::get('password');
+        $remember = Input::get('remember', false);
         //判断用户手机号码
         if(Controller::isMobile(Input::get('username'))==false){
             return json_encode(["msg"=>"请输入正确的手机号码","sta"=>1,"data"=>""],JSON_UNESCAPED_UNICODE);
@@ -48,7 +49,7 @@ class UserController extends Controller
             return Redirect::back()->withErrors($validator);//验证码错误！
         } else {
             //通过验证
-           $rst=Auth::attempt(['username' => $username, 'password' => $password]);
+           $rst=Auth::attempt(['username' => $username, 'password' => $password],$remember);
             if($rst==true){
                 return redirect()->intended('/');//登录成功，跳转页面
             }else{

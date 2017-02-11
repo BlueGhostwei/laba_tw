@@ -6,9 +6,53 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <script src="http://www.jq22.com/jquery/jquery-1.6.2.js"></script>
     <script type="text/javascript" src="../js/jquery.reveal.js"></script>
-    <script src="http://www.jq22.com/js/jq.js"></script>
+    {{--<script src="http://www.jq22.com/js/jq.js"></script>--}}
 
 </head>
+<script type="text/javascript">
+$(function () {
+    $("#send_sms_button").click(function () {
+       // var _form=form.getFormData();//获取表单参数
+        var moblie_number= $('#mobile_number').val();
+        var _token= $('input[name="_token"]').val();
+        //判断手机号码是否正确合法
+        if(!IsTel(moblie_number)){
+            alert('请输入正确的手机号码');
+        }
+        $.ajax({
+            url:'{{route('send.sms')}}',
+            data: {
+                'moblie_number':moblie_number,
+                '_token':_token
+            },
+            type: 'post',
+            stopAllStart: true,
+            success: function (data) {
+                debugger
+                if (data.sta == '1') {
+                        alert(data.msg || '请求失败');
+                } else {
+                        alert(data.msg || '请求失败');
+                }
+            },
+            error: function () {
+                alert('网络发生错误');
+                return false;
+            }
+        });
+        function IsTel(Tel){
+            var re=new RegExp(/^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/);
+            var retu=Tel.match(re);
+            if(retu){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    });
+
+});
+</script>
 <body style="background:url(../img/RELogin.jpg) repeat-x top;">
 <div id=RELogin style="">
     <div style=" width:250px; margin:auto;"><a href="index.php"><img src="../img/logolaba.png" style=" width:250px; height:auto"></a></div>
@@ -19,14 +63,15 @@
         </div>
         <div class="LGn1" style="float:left; margin-left:50px;">
             <div class="LGnt6"><p>手机号码:</p>
-                <input type="text" name="mobile_number" id="textfield"  class="LGnt2"/>
+                <input type="text" name="mobile_number" id="mobile_number"  class="LGnt2"/>
+                {{ csrf_field() }}
             </div>
             <div class="LGnt6"><p>登录密码:</p>
                 <input type="text" name="password" id="textfield"  class="LGnt2"/>
             </div>
             <div class="LGnt6"><p>验证码:</p>
                 <input type="text" name="user_code" id="textfield"  class="LGnt3"/>
-                <div class="LGnt4"><input type="submit" name="button" id="button" value="获取验证码" class="LGn3"/></div>
+                <div class="LGnt4"><input type="submit" name="button" id="send_sms_button" value="获取验证码" class="LGn3"/></div>
             </div>
             <div class="LGntnn6">
                 <input name="" type="checkbox" value="" /><span style="margin-left:10px;"><a  href="" target="_blank">阅读《服务协议》</a></span>

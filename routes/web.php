@@ -12,7 +12,7 @@
 */
 
 //Route::get('/', function () {return view('welcome');});
-
+//游客路由
 Route::group(['middleware' => 'guest'], function () {
     Route::group(['namespace' => 'Admin'], function () {
         //验证码
@@ -30,10 +30,11 @@ Route::group(['middleware' => 'guest'], function () {
         Route::get('Admin/user/register', ['as' => 'user.register', 'uses' => 'UserController@getRegister']);
         Route::post('Admin/user/register', 'UserController@postRegister');
         //sms短信接口
-        Route::get('Admin/user/sms',['as'=>'user.sms','uses'=>'SMSController@index']);
+        Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'SMSController@index']);
     });
 
 });
+//需要登陆并需要权限登陆（acl）的路由
 Route::group(['middleware' => 'auth'], function () {
    // echo 34342;die;
 

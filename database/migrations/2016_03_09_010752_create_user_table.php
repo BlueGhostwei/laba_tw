@@ -18,7 +18,7 @@ class CreateUserTable extends Migration
             $table->increments('id');
 
             // 用户名, 唯一
-            $table->string('name', 100)->unique();
+            $table->string('username', 100)->unique();
 
             // 邮箱, 唯一
             $table->string('email', 100)->nullable();
