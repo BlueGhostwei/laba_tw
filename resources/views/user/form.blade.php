@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', isset($user) ? '编辑用户' : '创建用户')
 
@@ -40,7 +40,7 @@
 @section('content')
     <div class="main-container">
         <div class="container-fluid">
-            @include('layout.breadcrumb', [
+            @include('Admin.layout.breadcrumb', [
                  'title' => isset($user) ? '编辑用户' : '创建用户',
 
                  'breadcrumb' => [

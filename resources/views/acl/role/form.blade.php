@@ -1,11 +1,11 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', '修改角色权限')
 
 @section('content')
     <div class="main-container">
         <div class="container-fluid">
-            @include('layout.breadcrumb', [
+            @include('Admin.layout.breadcrumb', [
                 'title' => '修改角色权限',
                 'content' => role2text($role),
                 'breadcrumb' => [

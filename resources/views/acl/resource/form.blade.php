@@ -1,11 +1,11 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', '权限点')
 
 @section('content')
     <div class="main-container">
         <div class="container-fluid">
-            @include('layout.breadcrumb', [
+            @include('Admin.layout.breadcrumb', [
                 'title' => !isset($resource) ? '添加权限点' : '修改权限点',
                 'content' => isset($resource) ? $resource->name : '',
                 'breadcrumb' => [

@@ -38,7 +38,7 @@ Route::group(['middleware' => 'guest'], function () {
 //需要登陆并需要权限登陆（acl）的路由
 Route::group(['middleware' => 'auth'], function () {
    // echo 34342;die;
-
-    Route::get('/', function () {return view('welcome');});
-
+    Route::group(['namespace' => 'Admin'], function () {
+    Route::get('/',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
+    });
 });

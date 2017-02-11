@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', '首页')
     <div class="page-container list-menu-view">

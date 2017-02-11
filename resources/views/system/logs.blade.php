@@ -1,11 +1,11 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', '系统日志')
 
 @section('content')
     <div class="main-container">
         <div class="container-fluid">
-            @include('layout.breadcrumb', [
+            @include('Admin.layout.breadcrumb', [
                 'title' => '系统日志',
                 'breadcrumb' => [
                     '系统日志' => ''

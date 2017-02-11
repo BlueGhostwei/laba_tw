@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('Admin.layout.main')
 
 @section('title', '我的资料')
 @section('header_related')
@@ -159,7 +159,7 @@
 @section('content')
     <div class="main-container">
         <div class="container-fluid">
-            @include('layout.breadcrumb', [
+            @include('Admin.layout.breadcrumb', [
                 'title' => '我的资料',
                 'breadcrumb' => [
                 '用户中心' => '',
