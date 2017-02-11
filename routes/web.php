@@ -30,7 +30,8 @@ Route::group(['middleware' => 'guest'], function () {
         Route::get('Admin/user/register', ['as' => 'user.register', 'uses' => 'UserController@getRegister']);
         Route::post('Admin/user/register', 'UserController@postRegister');
         //sms短信接口
-        Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'SMSController@index']);
+        //Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'UserController@postRegister']);
+      Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'SMSController@index']);
     });
 
 });

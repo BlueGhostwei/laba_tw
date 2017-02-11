@@ -15,6 +15,9 @@ $(function () {
        // var _form=form.getFormData();//获取表单参数
         var moblie_number= $('#mobile_number').val();
         var _token= $('input[name="_token"]').val();
+        var password= $('input[name="password"]').val();
+        var password_confirmation= $('input[name="password"]').val();
+
         //判断手机号码是否正确合法
         if(!IsTel(moblie_number)){
             alert('请输入正确的手机号码');
@@ -22,15 +25,16 @@ $(function () {
         $.ajax({
             url:'{{route('send.sms')}}',
             data: {
-                'moblie_number':moblie_number,
+                'username':moblie_number,
+                'password':password,
                 '_token':_token
             },
             type: 'post',
+            dataType: "json",
             stopAllStart: true,
             success: function (data) {
-                debugger
-                if (data.sta == '1') {
-                        alert(data.msg || '请求失败');
+                if (data.sta == '0') {
+                        alert(data.msg || '请求成功');
                 } else {
                         alert(data.msg || '请求失败');
                 }
@@ -67,7 +71,7 @@ $(function () {
                 {{ csrf_field() }}
             </div>
             <div class="LGnt6"><p>登录密码:</p>
-                <input type="text" name="password" id="textfield"  class="LGnt2"/>
+                <input type="password" name="password" id="textfield"  class="LGnt2"/>
             </div>
             <div class="LGnt6"><p>验证码:</p>
                 <input type="text" name="user_code" id="textfield"  class="LGnt3"/>

@@ -18,11 +18,11 @@
             </div>
             <div class="LGn1">
                 <div class="LGnt1"><p>用户名:</p>
-                    <input type="text" name="username" id="textfield"  class="LGnt2"/>
+                    <input type="text" name="username" id="username"  class="LGnt2"/>
                     <i>忘记用户名？</i>
                 </div>
                 <div class="LGnt1"><p>密&nbsp;&nbsp;&nbsp;&nbsp;码:</p>
-                    <input type="text" name="user_password" id="textfield"  class="LGnt2"/>
+                    <input type="password" name="user_password" id="password"  class="LGnt2"/>
                     <i>忘记密码？</i>
                 </div>
                 <div class="LGnt1"><p>验证码:</p>

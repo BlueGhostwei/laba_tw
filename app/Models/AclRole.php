@@ -78,7 +78,6 @@ const ROLE_MERCHANTS = 5;*/
     public function role2text($role)
     {
         $role_data = AclUser::orderBy('id','desc')->select('id','acl_name')->get()->toArray();
-
         $id_arr = array();
         $user_arr = array();
         foreach($role_data as $k => $v) {

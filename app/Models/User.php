@@ -45,16 +45,17 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'password',
-        'email',
-        'avatar',
         'role',
+       /* 'email',
+        'avatar',
+
         'real_name',
         'gender',
         'phone',
         'wechat',
-        'qq',
+        'qq',*/
     ];
 
     /**
@@ -95,14 +96,15 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
     {
         return [
             'create' => [
-                'name' => "required|min:3|max:100|unique:".$this->getTable(),
-                'password' => 'required|confirmed:confirm_password',
+                'username' => "required|min:3|max:100|unique:".$this->getTable(),
+               /* 'password' => 'required|confirmed:confirm_password',*/
+                'password'=>'required|min:6'
             ],
             'update' => [
-                'name' => "required|min:3|max:100|unique:".$this->getTable().",name,".$this->id,
+                'username' => "required|min:3|max:100|unique:".$this->getTable().",name,".$this->id,
             ],
             'manager' => [
-                'name' => 'required|max:100|unique:'.$this->getTable(),
+                'username' => 'required|max:100|unique:'.$this->getTable(),
                 'password' => 'required',
                /* 'real_name' => 'required|max:30',
                 'phone' => 'required',
@@ -173,7 +175,17 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
     {
         return (new AclRole)->role2text($this->role);
     }
+    /**
+     * 返回用户的 acl, 经过处理的
+     *
+     * @return array
+     */
+    public function getACL()
+    {
+        $acl = $this->access()->get(['resource'])->keyBy('resource');
 
+        return array_keys($acl->toArray());
+    }
     /**
      * 定义于 创建者 的关联关系
      *
@@ -223,17 +235,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
         return $this->hasMany(\App\Models\AclRole::class, 'role', $this->role);
     }
 
-    /**
-     * 返回用户的 acl, 经过处理的
-     *
-     * @return array
-     */
-    public function getACL()
-    {
-        $acl = $this->access()->get(['resource'])->keyBy('resource');
 
-        return array_keys($acl->toArray());
-    }
 
     public function shipAddress()
     {
