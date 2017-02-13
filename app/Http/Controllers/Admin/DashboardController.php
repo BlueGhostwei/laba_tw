@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
-use Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Redirect;
