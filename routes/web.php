@@ -31,7 +31,8 @@ Route::group(['middleware' => 'guest'], function () {
         Route::post('Admin/user/register', 'UserController@postRegister');
         //sms短信接口
         //Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'UserController@postRegister']);
-      Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'SMSController@index']);
+        Route::post('Admin/send/sms',['as'=>'send.sms','uses'=>'SMSController@index']);
+
     });
 
 });
@@ -39,6 +40,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
    // echo 34342;die;
     Route::group(['namespace' => 'Admin'], function () {
-    Route::get('/',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
+        Route::get('/',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
+    //网络媒体
+        Route::get('Admin/media/release',['as'=>"media.release",'uses'=>'MediaController@index']);
     });
 });

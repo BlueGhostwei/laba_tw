@@ -12,8 +12,6 @@
                 ]
             ])
         </div>
-
-
         </div>--}}
     <div class="content"><div class="Invoice"><div class="INa1dd">
                 <div class="main">
