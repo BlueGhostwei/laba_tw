@@ -26,7 +26,8 @@
 
 <?php include("head.php"); ?>
 
-<div class="content"><div class="Invoice"><div class="INa1dd">
+<div class="content">
+    <div class="Invoice"><div class="INa1dd">
             <div class="main">
                 <!--	幻灯片	-->
                 <div class="banner">
@@ -359,7 +360,8 @@
 
                 <div class="clr"></div>
             </div>
-        </div></div></div>
+        </div></div>
+</div>
 
 <?php include("foot.php"); ?>
 
